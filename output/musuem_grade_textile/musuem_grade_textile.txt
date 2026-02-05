@@ -1,0 +1,96 @@
+convert input.avif -filter Lanczos -resize 2500x \
+    \( +clone -colors 42 +dither -write mpr:source +delete \) \
+    \( -size 2500x2500 xc:grey +noise Random \
+       -virtual-pixel tile -motion-blur 0x15+90 -charcoal 1 -blur 0x1 \
+       -write mpr:warp_v +delete \) \
+    \( -size 2500x2500 xc:grey +noise Random \
+       -virtual-pixel tile -motion-blur 0x15+0 -charcoal 1 -blur 0x1 \
+       -write mpr:warp_h +delete \) \
+    mpr:source \
+    \( mpr:warp_v mpr:warp_h -compose HardLight -composite -write mpr:fabric_texture \) \
+    -compose SoftLight -composite \
+    \( mpr:fabric_texture -shade 135x45 -auto-level -function polynomial 3.5,-2.5,0.5 \) \
+    -compose Overlay -define compose:args=60 -composite \
+    -unsharp 0x2+1.5+0.05 \
+    -modulate 100,125,100 \
+    -contrast-stretch 0.5%x0.5% \
+    output.png
+
+
+
+convert comic1.avif -filter Lanczos -resize 2500x \
+    \( +clone -colors 42 +dither -write mpr:source +delete \) \
+    \( -size 2500x2500 xc:grey +noise Random \
+       -virtual-pixel tile -motion-blur 0x15+90 -charcoal 1 -blur 0x1 \
+       -write mpr:warp_v +delete \) \
+    \( -size 2500x2500 xc:grey +noise Random \
+       -virtual-pixel tile -motion-blur 0x15+0 -charcoal 1 -blur 0x1 \
+       -write mpr:warp_h +delete \) \
+    mpr:source \
+    \( mpr:warp_v mpr:warp_h -compose HardLight -composite -write mpr:fabric_texture \) \
+    -compose SoftLight -composite \
+    \( mpr:fabric_texture -shade 135x45 -auto-level -function polynomial 3.5,-2.5,0.5 \) \
+    -compose Overlay -define compose:args=60 -composite \
+    -unsharp 0x2+1.5+0.05 \
+    -modulate 100,125,100 \
+    -contrast-stretch 0.5%x0.5% \
+    comic1_grade.avif
+
+
+convert chart2.avif -filter Lanczos -resize 2500x \
+    \( +clone -colors 42 +dither -write mpr:source +delete \) \
+    \( -size 2500x2500 xc:grey +noise Random \
+       -virtual-pixel tile -motion-blur 0x15+90 -charcoal 1 -blur 0x1 \
+       -write mpr:warp_v +delete \) \
+    \( -size 2500x2500 xc:grey +noise Random \
+       -virtual-pixel tile -motion-blur 0x15+0 -charcoal 1 -blur 0x1 \
+       -write mpr:warp_h +delete \) \
+    mpr:source \
+    \( mpr:warp_v mpr:warp_h -compose HardLight -composite -write mpr:fabric_texture \) \
+    -compose SoftLight -composite \
+    \( mpr:fabric_texture -shade 135x45 -auto-level -function polynomial 3.5,-2.5,0.5 \) \
+    -compose Overlay -define compose:args=60 -composite \
+    -unsharp 0x2+1.5+0.05 \
+    -modulate 100,125,100 \
+    -contrast-stretch 0.5%x0.5% \
+    chart2_grade.avif
+
+
+
+    convert mona.avif -filter Lanczos -resize 2500x \
+    \( +clone -colors 42 +dither -write mpr:source +delete \) \
+    \( -size 2500x2500 xc:grey +noise Random \
+       -virtual-pixel tile -motion-blur 0x15+90 -charcoal 1 -blur 0x1 \
+       -write mpr:warp_v +delete \) \
+    \( -size 2500x2500 xc:grey +noise Random \
+       -virtual-pixel tile -motion-blur 0x15+0 -charcoal 1 -blur 0x1 \
+       -write mpr:warp_h +delete \) \
+    mpr:source \
+    \( mpr:warp_v mpr:warp_h -compose HardLight -composite -write mpr:fabric_texture \) \
+    -compose SoftLight -composite \
+    \( mpr:fabric_texture -shade 135x45 -auto-level -function polynomial 3.5,-2.5,0.5 \) \
+    -compose Overlay -define compose:args=60 -composite \
+    -unsharp 0x2+1.5+0.05 \
+    -modulate 100,125,100 \
+    -contrast-stretch 0.5%x0.5% \
+    mona_grade.avif
+
+
+
+convert photo2.avif -filter Lanczos -resize 2500x \
+    \( +clone -colors 42 +dither -write mpr:source +delete \) \
+    \( -size 2500x2500 xc:grey +noise Random \
+       -virtual-pixel tile -motion-blur 0x15+90 -charcoal 1 -blur 0x1 \
+       -write mpr:warp_v +delete \) \
+    \( -size 2500x2500 xc:grey +noise Random \
+       -virtual-pixel tile -motion-blur 0x15+0 -charcoal 1 -blur 0x1 \
+       -write mpr:warp_h +delete \) \
+    mpr:source \
+    \( mpr:warp_v mpr:warp_h -compose HardLight -composite -write mpr:fabric_texture \) \
+    -compose SoftLight -composite \
+    \( mpr:fabric_texture -shade 135x45 -auto-level -function polynomial 3.5,-2.5,0.5 \) \
+    -compose Overlay -define compose:args=60 -composite \
+    -unsharp 0x2+1.5+0.05 \
+    -modulate 100,125,100 \
+    -contrast-stretch 0.5%x0.5% \
+    photo2_grade.avif

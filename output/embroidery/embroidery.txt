@@ -1,0 +1,89 @@
+convert input.avif \
+-filter Lanczos -resize 2500x \
+\( +clone -colors 48 +dither -write mpr:color_anchor +delete \) \
+-colorspace Gray \
+\( +clone -motion-blur 0x1.5+90 -motion-blur 0x1.5+0 \) -compose blend -define compose:args=40 -composite \
+-spread 0.8 \
+\( +clone +noise Multiplicative -level 20%,80% -sharpen 0x1 \) -compose SoftLight -define compose:args=40 -composite \
+\( +clone -tile pattern:crosshatch -draw "color 0,0 reset" -negate -blur 0x1 -level 35%,65% \) \
+-compose Overlay -define compose:args=30 -composite \
+\( +clone -blur 0x2 -shade 135x35 -auto-level -sigmoidal-contrast 8x50% \) \
+-compose HardLight -define compose:args=50 -composite \
+mpr:color_anchor -compose Colorize -composite \
+-unsharp 0x3+1.5+0.02 \
+-modulate 100,130,100 \
+-contrast-stretch 0.5%x0.5% \
+output.png
+
+
+
+convert comic1.avif \
+-filter Lanczos -resize 2500x \
+\( +clone -colors 48 +dither -write mpr:color_anchor +delete \) \
+-colorspace Gray \
+\( +clone -motion-blur 0x1.5+90 -motion-blur 0x1.5+0 \) -compose blend -define compose:args=40 -composite \
+-spread 0.8 \
+\( +clone +noise Multiplicative -level 20%,80% -sharpen 0x1 \) -compose SoftLight -define compose:args=40 -composite \
+\( +clone -tile pattern:crosshatch -draw "color 0,0 reset" -negate -blur 0x1 -level 35%,65% \) \
+-compose Overlay -define compose:args=30 -composite \
+\( +clone -blur 0x2 -shade 135x35 -auto-level -sigmoidal-contrast 8x50% \) \
+-compose HardLight -define compose:args=50 -composite \
+mpr:color_anchor -compose Colorize -composite \
+-unsharp 0x3+1.5+0.02 \
+-modulate 100,130,100 \
+-contrast-stretch 0.5%x0.5% \
+comic1_embroidery.avif
+
+
+convert mona.avif \
+-filter Lanczos -resize 2500x \
+\( +clone -colors 48 +dither -write mpr:color_anchor +delete \) \
+-colorspace Gray \
+\( +clone -motion-blur 0x1.5+90 -motion-blur 0x1.5+0 \) -compose blend -define compose:args=40 -composite \
+-spread 0.8 \
+\( +clone +noise Multiplicative -level 20%,80% -sharpen 0x1 \) -compose SoftLight -define compose:args=40 -composite \
+\( +clone -tile pattern:crosshatch -draw "color 0,0 reset" -negate -blur 0x1 -level 35%,65% \) \
+-compose Overlay -define compose:args=30 -composite \
+\( +clone -blur 0x2 -shade 135x35 -auto-level -sigmoidal-contrast 8x50% \) \
+-compose HardLight -define compose:args=50 -composite \
+mpr:color_anchor -compose Colorize -composite \
+-unsharp 0x3+1.5+0.02 \
+-modulate 100,130,100 \
+-contrast-stretch 0.5%x0.5% \
+mona_embroidery.avif
+
+
+convert photo2.avif \
+-filter Lanczos -resize 2500x \
+\( +clone -colors 48 +dither -write mpr:color_anchor +delete \) \
+-colorspace Gray \
+\( +clone -motion-blur 0x1.5+90 -motion-blur 0x1.5+0 \) -compose blend -define compose:args=40 -composite \
+-spread 0.8 \
+\( +clone +noise Multiplicative -level 20%,80% -sharpen 0x1 \) -compose SoftLight -define compose:args=40 -composite \
+\( +clone -tile pattern:crosshatch -draw "color 0,0 reset" -negate -blur 0x1 -level 35%,65% \) \
+-compose Overlay -define compose:args=30 -composite \
+\( +clone -blur 0x2 -shade 135x35 -auto-level -sigmoidal-contrast 8x50% \) \
+-compose HardLight -define compose:args=50 -composite \
+mpr:color_anchor -compose Colorize -composite \
+-unsharp 0x3+1.5+0.02 \
+-modulate 100,130,100 \
+-contrast-stretch 0.5%x0.5% \
+photo2_embroidery.avif
+
+
+convert chart2.avif \
+-filter Lanczos -resize 2500x \
+\( +clone -colors 48 +dither -write mpr:color_anchor +delete \) \
+-colorspace Gray \
+\( +clone -motion-blur 0x1.5+90 -motion-blur 0x1.5+0 \) -compose blend -define compose:args=40 -composite \
+-spread 0.8 \
+\( +clone +noise Multiplicative -level 20%,80% -sharpen 0x1 \) -compose SoftLight -define compose:args=40 -composite \
+\( +clone -tile pattern:crosshatch -draw "color 0,0 reset" -negate -blur 0x1 -level 35%,65% \) \
+-compose Overlay -define compose:args=30 -composite \
+\( +clone -blur 0x2 -shade 135x35 -auto-level -sigmoidal-contrast 8x50% \) \
+-compose HardLight -define compose:args=50 -composite \
+mpr:color_anchor -compose Colorize -composite \
+-unsharp 0x3+1.5+0.02 \
+-modulate 100,130,100 \
+-contrast-stretch 0.5%x0.5% \
+chart2_embroidery.avif

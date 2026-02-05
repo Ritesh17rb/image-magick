@@ -1,0 +1,56 @@
+convert input.avif \
+-filter Lanczos -resize 2500x \
+\( +clone -paint 4 -blur 0x1 \) \
+\( +clone -paint 1 -selective-blur 0x3+10% \) \
+-compose Blend -define compose:args=50 -composite \
+\( +clone -colorspace gray -blur 0x2 -shade 135x40 -auto-level -sigmoidal-contrast 10x50% \) \
+-compose Overlay -composite \
+-modulate 100,145,100 -sharpen 0x2 \
+output.png
+
+
+
+
+convert photo2.avif \
+-filter Lanczos -resize 2500x \
+\( +clone -paint 4 -blur 0x1 \) \
+\( +clone -paint 1 -selective-blur 0x3+10% \) \
+-compose Blend -define compose:args=50 -composite \
+\( +clone -colorspace gray -blur 0x2 -shade 135x40 -auto-level -sigmoidal-contrast 10x50% \) \
+-compose Overlay -composite \
+-modulate 100,145,100 -sharpen 0x2 \
+photo2_oil.avif
+
+
+convert mona.avif \
+-filter Lanczos -resize 2500x \
+\( +clone -paint 4 -blur 0x1 \) \
+\( +clone -paint 1 -selective-blur 0x3+10% \) \
+-compose Blend -define compose:args=50 -composite \
+\( +clone -colorspace gray -blur 0x2 -shade 135x40 -auto-level -sigmoidal-contrast 10x50% \) \
+-compose Overlay -composite \
+-modulate 100,145,100 -sharpen 0x2 \
+mona_oil.avif
+
+
+convert chart2.avif \
+-filter Lanczos -resize 2500x \
+\( +clone -paint 4 -blur 0x1 \) \
+\( +clone -paint 1 -selective-blur 0x3+10% \) \
+-compose Blend -define compose:args=50 -composite \
+\( +clone -colorspace gray -blur 0x2 -shade 135x40 -auto-level -sigmoidal-contrast 10x50% \) \
+-compose Overlay -composite \
+-modulate 100,145,100 -sharpen 0x2 \
+chart2_oil.avif
+
+
+
+convert comic1.avif \
+-filter Lanczos -resize 2500x \
+\( +clone -paint 4 -blur 0x1 \) \
+\( +clone -paint 1 -selective-blur 0x3+10% \) \
+-compose Blend -define compose:args=50 -composite \
+\( +clone -colorspace gray -blur 0x2 -shade 135x40 -auto-level -sigmoidal-contrast 10x50% \) \
+-compose Overlay -composite \
+-modulate 100,145,100 -sharpen 0x2 \
+comic1_oil.avif
