@@ -1,0 +1,31 @@
+PENCIL SKETCH COMMANDS
+======================
+
+For Photos/Art (comic1, mona, photo2):
+--------------------------------------
+convert input.avif \
+-colorspace Gray \
+-sketch 0x15+100 \
+-brightness-contrast -5x15 \
+\( +clone -blur 0x2 \) \
+-compose multiply -composite \
+-level 8%,92% \
+-unsharp 0x0.8 \
+output_pencil.avif
+
+For Charts/Diagrams (chart2):
+------------------------------
+convert input.avif \
+-colorspace Gray \
+-edge 1 \
+-negate \
+-blur 0x0.5 \
+-level 15%,85% \
+-unsharp 0x2 \
+output_pencil.avif
+
+Why Different Commands?
+------------------------
+- Photos need softer, artistic sketch effect
+- Charts need sharp edges and preserved details
+- Edge detection + minimal blur works best for charts

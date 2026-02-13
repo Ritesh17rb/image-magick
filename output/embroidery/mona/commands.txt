@@ -1,0 +1,88 @@
+MONA - EMBROIDERY EFFECT - 5 ITERATIONS (Starting from Clean Image)
+=======================================================================
+
+BASELINE - Original Clean Image:
+- Colors: 52,616
+- Mean Brightness: 14,069
+- StdDev: 7,972
+- Size: 45K
+
+GOAL: Add embroidery texture while preserving original darkness and improving detail
+
+================================================================================
+
+ITERATION 1: Light Embroidery Texture
+--------------------------------------
+Result: Colors: 237,548 | Mean: 17,657 | StdDev: 13,095 | Size: 1.2M
+Assessment: ✗ Too bright (+25%), but good texture added
+
+Command:
+convert images/mona.avif -filter Lanczos -resize 2500x \( +clone -colors 60 +dither -write mpr:color_anchor +delete \) -colorspace Gray \( +clone -motion-blur 0x1.2+90 -motion-blur 0x1.2+0 \) -compose blend -define compose:args=35 -composite -spread 0.6 \( +clone +noise Multiplicative -level 25%,75% -sharpen 0x0.8 \) -compose SoftLight -define compose:args=35 -composite \( +clone -tile pattern:crosshatch -draw "color 0,0 reset" -negate -blur 0x0.8 -level 38%,62% \) -compose Overlay -define compose:args=25 -composite \( +clone -blur 0x1.8 -shade 135x35 -auto-level -sigmoidal-contrast 7x50% \) -compose HardLight -define compose:args=45 -composite mpr:color_anchor -compose Colorize -composite -unsharp 0x2.5+1.3+0.02 -modulate 100,125,100 -contrast-stretch 0.3%x0.3% claude/embroidery/mona/iteration_1.avif
+
+================================================================================
+
+ITERATION 2: Slight Parameter Adjustments
+------------------------------------------
+Result: Colors: 268,262 | Mean: 18,025 | StdDev: 12,527 | Size: 1.1M
+Assessment: ✗ Even brighter (+28%)
+
+Command:
+convert images/mona.avif -filter Lanczos -resize 2500x \( +clone -colors 62 +dither -write mpr:color_anchor +delete \) -colorspace Gray \( +clone -motion-blur 0x1.3+90 -motion-blur 0x1.3+0 \) -compose blend -define compose:args=36 -composite -spread 0.7 \( +clone +noise Multiplicative -level 24%,76% -sharpen 0x0.9 \) -compose SoftLight -define compose:args=36 -composite \( +clone -tile pattern:crosshatch -draw "color 0,0 reset" -negate -blur 0x0.9 -level 37%,63% \) -compose Overlay -define compose:args=26 -composite \( +clone -blur 0x1.9 -shade 134x36 -auto-level -sigmoidal-contrast 7.2x50% \) -compose HardLight -define compose:args=46 -composite mpr:color_anchor -compose Colorize -composite -unsharp 0x2.6+1.35+0.02 -modulate 100,127,98 -brightness-contrast -2x0 -contrast-stretch 0.32%x0.32% claude/embroidery/mona/iteration_2.avif
+
+================================================================================
+
+ITERATION 3: Attempted Darkening (Failed)
+------------------------------------------
+Result: Colors: 258,312 | Mean: 23,906 | StdDev: 11,485 | Size: 1.1M
+Assessment: ✗✗ Much worse - very bright (+70%)
+
+Command:
+convert images/mona.avif -filter Lanczos -resize 2500x \( +clone -colors 64 +dither -write mpr:color_anchor +delete \) -colorspace Gray \( +clone -motion-blur 0x1.35+90 -motion-blur 0x1.35+0 \) -compose blend -define compose:args=37 -composite -spread 0.75 \( +clone +noise Multiplicative -level 23%,77% -sharpen 0x0.95 \) -compose SoftLight -define compose:args=37 -composite \( +clone -tile pattern:crosshatch -draw "color 0,0 reset" -negate -blur 0x0.95 -level 36%,64% \) -compose Overlay -define compose:args=27 -composite \( +clone -blur 0x2 -shade 133x37 -auto-level -sigmoidal-contrast 7.4x50% \) -compose HardLight -define compose:args=47 -composite mpr:color_anchor -compose Colorize -composite -unsharp 0x2.7+1.4+0.02 -modulate 100,128,96 -brightness-contrast -5x-2 -contrast-stretch 0.34%x0.34% claude/embroidery/mona/iteration_3.avif
+
+================================================================================
+
+ITERATION 4: Level Adjustment for Darkness
+-------------------------------------------
+Result: Colors: 281,130 | Mean: 15,969 | StdDev: 14,470 | Size: 1.3M
+Assessment: ✓✓ Much better! Only +13% bright, good texture
+
+Command:
+convert images/mona.avif -filter Lanczos -resize 2500x \( +clone -colors 66 +dither -write mpr:color_anchor +delete \) -colorspace Gray \( +clone -motion-blur 0x1.4+90 -motion-blur 0x1.4+0 \) -compose blend -define compose:args=38 -composite -spread 0.8 \( +clone +noise Multiplicative -level 22%,78% -sharpen 0x1 \) -compose SoftLight -define compose:args=38 -composite \( +clone -tile pattern:crosshatch -draw "color 0,0 reset" -negate -blur 0x1 -level 35%,65% \) -compose Overlay -define compose:args=28 -composite \( +clone -blur 0x2.1 -shade 132x38 -auto-level -sigmoidal-contrast 7.6x50% \) -compose HardLight -define compose:args=48 -composite mpr:color_anchor -compose Colorize -composite -unsharp 0x2.8+1.45+0.02 -modulate 100,129,100 -level 0%,80% -contrast-stretch 0.35%x0.35% claude/embroidery/mona/iteration_4.avif
+
+================================================================================
+
+ITERATION 5: Gamma Darkening - FINAL SUCCESS
+---------------------------------------------
+Result: Colors: 272,181 | Mean: 12,733 | StdDev: Not recorded | Size: Not recorded
+Assessment: ✓✓✓ BEST! Slightly darker than original (-9%), excellent texture
+
+Command:
+convert images/mona.avif -filter Lanczos -resize 2500x \( +clone -colors 68 +dither -write mpr:color_anchor +delete \) -colorspace Gray \( +clone -motion-blur 0x1.45+90 -motion-blur 0x1.45+0 \) -compose blend -define compose:args=39 -composite -spread 0.85 \( +clone +noise Multiplicative -level 21%,79% -sharpen 0x1.05 \) -compose SoftLight -define compose:args=39 -composite \( +clone -tile pattern:crosshatch -draw "color 0,0 reset" -negate -blur 0x1.05 -level 34%,66% \) -compose Overlay -define compose:args=29 -composite \( +clone -blur 0x2.2 -shade 131x39 -auto-level -sigmoidal-contrast 7.8x50% \) -compose HardLight -define compose:args=49 -composite mpr:color_anchor -compose Colorize -composite -unsharp 0x2.9+1.5+0.02 -modulate 100,130,100 -gamma 0.80 -level 5%,95% -contrast-stretch 0.36%x0.36% claude/embroidery/mona/iteration_5.avif
+
+KEY INSIGHT: -gamma 0.80 at the end darkens the entire image to match original brightness
+
+================================================================================
+
+FINAL COMPARISON:
+-----------------
+Baseline:    Colors: 52,616   | Mean: 14,069 | Brightness: 100%
+Iteration 1: Colors: 237,548  | Mean: 17,657 | Brightness: 125% ✗
+Iteration 2: Colors: 268,262  | Mean: 18,025 | Brightness: 128% ✗
+Iteration 3: Colors: 258,312  | Mean: 23,906 | Brightness: 170% ✗✗
+Iteration 4: Colors: 281,130  | Mean: 15,969 | Brightness: 113% ✓✓
+Iteration 5: Colors: 272,181  | Mean: 12,733 | Brightness: 91%  ✓✓✓ WINNER!
+
+WINNER: Iteration 5
+- Achieved darker appearance than original (91% brightness)
+- 5x more colors/detail than baseline (52K → 272K)
+- Proper embroidery texture without washing out
+- No whiteness increase issue
+
+KEY LESSONS LEARNED:
+1. Embroidery processing naturally brightens images
+2. Must apply gamma correction at the END to compensate
+3. Target should be slightly darker than original (90-95%) to account for perception
+4. Level + gamma combination works best for final darkening
+5. Monitor mean brightness throughout iterations
+
+Generated: 2026-02-10

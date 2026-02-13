@@ -1,56 +1,73 @@
 convert input.avif \
 -filter Lanczos -resize 2500x \
-\( +clone -paint 4 -blur 0x1 \) \
-\( +clone -paint 1 -selective-blur 0x3+10% \) \
--compose Blend -define compose:args=50 -composite \
-\( +clone -colorspace gray -blur 0x2 -shade 135x40 -auto-level -sigmoidal-contrast 10x50% \) \
--compose Overlay -composite \
--modulate 100,145,100 -sharpen 0x2 \
-output.png
+\( +clone -paint 8 -blur 0x1 \) \
+\( +clone -paint 4 -blur 0x0.5 \) \
+\( +clone -paint 2 \) \
+-compose Blend -define compose:args=40,30 -composite \
+\( +clone -spread 1 -blur 0x0.5 \) \
+-compose Blend -define compose:args=70 -composite \
+\( +clone -colorspace gray -blur 0x2 -shade 135x45 -auto-level -sigmoidal-contrast 10x50% \) \
+-compose Overlay -define compose:args=45 -composite \
+-modulate 100,148,100 \
+-sharpen 0x1.8 \
+output.avif
 
 
-
-
-convert photo2.avif \
+convert images/photo2.avif \
 -filter Lanczos -resize 2500x \
-\( +clone -paint 4 -blur 0x1 \) \
-\( +clone -paint 1 -selective-blur 0x3+10% \) \
--compose Blend -define compose:args=50 -composite \
-\( +clone -colorspace gray -blur 0x2 -shade 135x40 -auto-level -sigmoidal-contrast 10x50% \) \
--compose Overlay -composite \
--modulate 100,145,100 -sharpen 0x2 \
+\( +clone -paint 8 -blur 0x1 \) \
+\( +clone -paint 4 -blur 0x0.5 \) \
+\( +clone -paint 2 \) \
+-compose Blend -define compose:args=40,30 -composite \
+\( +clone -spread 1 -blur 0x0.5 \) \
+-compose Blend -define compose:args=70 -composite \
+\( +clone -colorspace gray -blur 0x2 -shade 135x45 -auto-level -sigmoidal-contrast 10x50% \) \
+-compose Overlay -define compose:args=45 -composite \
+-modulate 100,148,100 \
+-sharpen 0x1.8 \
 photo2_oil.avif
 
 
-convert mona.avif \
+convert images/mona.avif \
 -filter Lanczos -resize 2500x \
-\( +clone -paint 4 -blur 0x1 \) \
-\( +clone -paint 1 -selective-blur 0x3+10% \) \
--compose Blend -define compose:args=50 -composite \
-\( +clone -colorspace gray -blur 0x2 -shade 135x40 -auto-level -sigmoidal-contrast 10x50% \) \
--compose Overlay -composite \
--modulate 100,145,100 -sharpen 0x2 \
+\( +clone -paint 8 -blur 0x1 \) \
+\( +clone -paint 4 -blur 0x0.5 \) \
+\( +clone -paint 2 \) \
+-compose Blend -define compose:args=40,30 -composite \
+\( +clone -spread 1 -blur 0x0.5 \) \
+-compose Blend -define compose:args=70 -composite \
+\( +clone -colorspace gray -blur 0x2 -shade 135x45 -auto-level -sigmoidal-contrast 10x50% \) \
+-compose Overlay -define compose:args=45 -composite \
+-modulate 100,148,100 \
+-sharpen 0x1.8 \
 mona_oil.avif
 
 
-convert chart2.avif \
+convert images/chart2.avif \
 -filter Lanczos -resize 2500x \
-\( +clone -paint 4 -blur 0x1 \) \
-\( +clone -paint 1 -selective-blur 0x3+10% \) \
--compose Blend -define compose:args=50 -composite \
-\( +clone -colorspace gray -blur 0x2 -shade 135x40 -auto-level -sigmoidal-contrast 10x50% \) \
--compose Overlay -composite \
--modulate 100,145,100 -sharpen 0x2 \
+\( +clone -paint 8 -blur 0x1 \) \
+\( +clone -paint 4 -blur 0x0.5 \) \
+\( +clone -paint 2 \) \
+-compose Blend -define compose:args=40,30 -composite \
+\( +clone -spread 1 -blur 0x0.5 \) \
+-compose Blend -define compose:args=70 -composite \
+\( +clone -colorspace gray -blur 0x2 -shade 135x45 -auto-level -sigmoidal-contrast 10x50% \) \
+-compose Overlay -define compose:args=45 -composite \
+-modulate 100,148,100 \
+-sharpen 0x1.8 \
 chart2_oil.avif
 
 
-
-convert comic1.avif \
+convert images/comic1.avif \
 -filter Lanczos -resize 2500x \
-\( +clone -paint 4 -blur 0x1 \) \
-\( +clone -paint 1 -selective-blur 0x3+10% \) \
--compose Blend -define compose:args=50 -composite \
-\( +clone -colorspace gray -blur 0x2 -shade 135x40 -auto-level -sigmoidal-contrast 10x50% \) \
--compose Overlay -composite \
--modulate 100,145,100 -sharpen 0x2 \
+\( +clone -paint 8 -blur 0x1 \) \
+\( +clone -paint 4 -blur 0x0.5 \) \
+\( +clone -paint 2 \) \
+-compose Blend -define compose:args=40,30 -composite \
+\( +clone -spread 1 -blur 0x0.5 \) \
+-compose Blend -define compose:args=70 -composite \
+\( +clone -colorspace gray -blur 0x2 -shade 135x45 -auto-level -sigmoidal-contrast 10x50% \) \
+-compose Overlay -define compose:args=45 -composite \
+-modulate 100,148,100 \
+-sharpen 0x1.8 \
 comic1_oil.avif

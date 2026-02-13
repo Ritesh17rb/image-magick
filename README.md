@@ -1,19 +1,28 @@
 # ImageMagick Effects Gallery
 
-A curated set of procedural art effects created entirely with ImageMagick CLI pipelines. The repository includes a simple static gallery (`index.html`) that showcases each effect across a small set of input images.
+A curated collection of **11 procedural art effects** created entirely with ImageMagick CLI pipelines. The repository includes a static gallery (`index.html`) that showcases each effect across four input images, plus a comprehensive test suite documenting 100+ iterations of 10 additional experimental effects.
 
-## What’s in this repo
+## What's in this repo
 
-- `index.html` — static gallery UI that renders the effect grid.
+- `index.html` — static gallery UI that renders the effect grid with 11 different artistic styles.
 - `script.js` — injects effect commands into the UI and powers the modal/copy actions.
-- `images/` — original input images shown in the first row of the gallery.
-- `output/` — generated results, grouped by effect.
-  - `output/embroidery/`
-  - `output/musuem_grade_textile/`
-  - `output/oil_painting/`
-  - `output/water_colour/`
-  - `output/graffiti/`
-- `output/*/*.txt` — the exact ImageMagick command sequences used to generate each effect.
+- `images/` — original input images shown in the first row of the gallery (chart, comic, art, portrait).
+- `output/` — generated results, grouped by effect (11 effects total).
+  - `output/embroidery/` — Textile embroidery with thread texture
+  - `output/musuem_grade_textile/` — Museum-quality woven fabric
+  - `output/oil_painting/` — Oil paint with brush strokes
+  - `output/water_colour/` — Watercolor wash effects
+  - `output/graffiti/` — Spray paint on brick wall
+  - `output/pencil_sketch/` — **NEW** Graphite pencil drawing
+  - `output/chalk_drawing/` — **NEW** Chalk on blackboard
+  - `output/mosaic_new/` — **NEW** Pixelated tile mosaic
+  - `output/impressionist/` — **NEW** Impressionist painting style
+  - `output/metal_engraving/` — **NEW** Engraved metal plate
+- `test/` — experimental effect iterations (10 effects × 10 iterations each = 100 images).
+  - Contains detailed command logs and feedback for: Pencil Sketch, Chalk Drawing, Stained Glass, Mosaic, Pointillism, Impressionist, Screen Print, Woodblock, Fabric Texture, Metal Engraving
+  - `test/SUMMARY.md` — Overview of test effects and methodology
+  - `test/FEEDBACK_MECHANISM.md` — Iterative improvement process documentation
+- `NEW_EFFECTS_SUMMARY.md` — Documentation for the 5 newly added gallery effects.
 
 ## Beginner setup
 
@@ -199,8 +208,115 @@ Step explanations:
 
 - `-modulate 100,150,100` increases saturation for punchy spray paint.
 - `pattern:bricks` creates a brick wall texture.
-- `-shade 120x45` simulates light on the wall’s surface.
+- `-shade 120x45` simulates light on the wall's surface.
 - `-compose Overlay` blends graffiti colors with the wall texture.
+
+---
+
+## New Effects (Recently Added)
+
+### 6) Pencil Sketch
+
+**Two variants optimized for different content types:**
+
+**For Photos/Artwork:**
+```bash
+convert input.avif \
+  -colorspace Gray \
+  -sketch 0x15+100 \
+  -brightness-contrast -5x15 \
+  \( +clone -blur 0x2 \) \
+  -compose multiply -composite \
+  -level 8%,92% \
+  -unsharp 0x0.8 \
+  output_pencil.avif
+```
+
+**For Charts/Diagrams (better edge preservation):**
+```bash
+convert input.avif \
+  -colorspace Gray \
+  -edge 1 \
+  -negate \
+  -blur 0x0.5 \
+  -level 15%,85% \
+  -unsharp 0x2 \
+  output_pencil.avif
+```
+
+Step explanations:
+- `-sketch` creates pencil-like strokes with randomized texture.
+- `-compose multiply` with blurred clone adds shading depth.
+- `-level` adjusts tonal range to reduce whiteness.
+- For charts, `-edge` preserves sharp lines and text better than sketch filter.
+
+### 7) Chalk Drawing
+
+Command:
+
+```bash
+convert input.avif \
+  -colorspace Gray \
+  -negate \
+  -blur 0x1 \
+  -edge 2 \
+  output_chalk.avif
+```
+
+Step explanations:
+- `-negate` creates the blackboard effect (inverted colors).
+- `-blur 0x1` softens for chalk-like texture.
+- `-edge 2` defines chalk stroke edges.
+
+### 8) Mosaic
+
+Command:
+
+```bash
+convert input.avif \
+  -scale 10% \
+  -scale 1000% \
+  output_mosaic.avif
+```
+
+Step explanations:
+- `-scale 10%` downsamples to create large pixels/tiles.
+- `-scale 1000%` upscales without interpolation for blocky mosaic effect.
+- Simple but effective pixelation creates tile appearance.
+
+### 9) Impressionist
+
+Command:
+
+```bash
+convert input.avif \
+  -paint 5 \
+  -modulate 100,110,100 \
+  output_impressionist.avif
+```
+
+Step explanations:
+- `-paint 5` simulates oil brush strokes with radius 5 pixels.
+- `-modulate 100,110,100` boosts saturation by 10% for painterly vibrancy.
+
+### 10) Metal Engraving
+
+Command:
+
+```bash
+convert input.avif \
+  -colorspace Gray \
+  -shade 120x45 \
+  -normalize \
+  output_metal.avif
+```
+
+Step explanations:
+- `-colorspace Gray` converts to grayscale for metallic appearance.
+- `-shade 120x45` applies directional lighting (azimuth 120°, elevation 45°).
+- `-normalize` stretches contrast for metallic sheen effect.
+
+---
 
 ## Output naming
 

@@ -1,0 +1,35 @@
+WATER COLOUR EFFECT - ITERATION 5 COMMAND
+==========================================
+
+This is the exact command used to generate iteration_5.avif for all water colour images.
+
+IMPORTANT: Adjust the -gamma value based on your image brightness:
+- Dark images (portraits, art): gamma 0.83
+- Medium images (comics): gamma 0.85
+- Bright images (charts, infographics): gamma 0.90
+
+NOTE: Water colour effect naturally darkens images more than other effects.
+
+COMMAND:
+--------
+
+convert input.avif \
+-filter Lanczos -resize 2500x \
+\( +clone -median 10 -paint 3 -modulate 100,165,100 \) \
+\( +clone -colorspace gray -edge 1.2 -negate -median 2.5 -level 8%,92% \) \
+-compose Multiply -define compose:args=30 -composite \
+\( -size 2500x2500 canvas:white +noise Gaussian -colorspace gray -blur 0x0.8 -shade 118x46 -auto-level \) \
+-compose SoftLight -composite \
+-unsharp 0x3.5+1.8+0.018 \
+-gamma 0.83 \
+-contrast-stretch 0.7%x0.7% \
+output.avif
+
+GAMMA VALUES USED FOR EACH IMAGE:
+----------------------------------
+mona.avif:   -gamma 0.83
+chart2.avif: -gamma 0.90
+comic1.avif: -gamma 0.85
+photo2.avif: -gamma 0.83
+
+Generated: 2026-02-10
