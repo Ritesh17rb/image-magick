@@ -87,38 +87,6 @@ mpr:source \\
 -contrast-stretch 0.4%x0.4% \\
 output.avif`,
 
-  oil: `convert input.avif \\
--filter Lanczos -resize 2500x \\
-\\( +clone -paint 8 -blur 0x1 \\) \\
-\\( +clone -paint 4 -blur 0x0.5 \\) \\
-\\( +clone -paint 2 \\) \\
--compose Blend -define compose:args=40,30 -composite \\
-\\( +clone -spread 1 -blur 0x0.5 \\) \\
--compose Blend -define compose:args=70 -composite \\
-\\( +clone -colorspace gray -blur 0x2 -shade 135x45 -auto-level -sigmoidal-contrast 10x50% \\) \\
--compose Overlay -define compose:args=45 -composite \\
--modulate 100,148,100 \\
--sharpen 0x1.8 \\
-output.avif`,
-
-  water: `convert input.avif \\
--filter Lanczos -resize 2500x \\
-\\( +clone -median 10 -paint 3 -modulate 100,165,100 \\) \\
-\\( +clone -colorspace gray -edge 1.2 -negate -median 2.5 -level 8%,92% \\) \\
--compose Multiply -define compose:args=30 -composite \\
-\\( -size 2500x2500 canvas:white +noise Gaussian -colorspace gray -blur 0x0.8 -shade 118x46 -auto-level \\) \\
--compose SoftLight -composite \\
--unsharp 0x3.5+1.8+0.018 \\
--gamma 0.83 \\
--contrast-stretch 0.7%x0.7% \\
-output.avif`,
-
-  graffiti: `convert input.avif \\
--filter Lanczos -resize 2500x -modulate 100,150,100 \\
-\\( -size 2500x2500 pattern:bricks -colorspace gray -blur 0x2 -shade 120x45 -auto-level \\) \\
--compose Overlay -composite \\
-output_graffiti_wall.avif`,
-
   pencil_sketch: `convert input.avif \\
 -colorspace Gray \\
 -sketch 0x15+100 \\

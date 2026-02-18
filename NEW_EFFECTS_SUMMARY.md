@@ -99,13 +99,13 @@ output/
 ## Gallery Update
 
 The index.html now includes:
-- **Row 7:** Pencil Sketch
-- **Row 8:** Chalk Drawing
-- **Row 9:** Mosaic
-- **Row 10:** Impressionist
-- **Row 11:** Metal Engraving
+- **Row 4:** Pencil Sketch
+- **Row 5:** Chalk Drawing
+- **Row 6:** Mosaic
+- **Row 7:** Impressionist
+- **Row 8:** Metal Engraving
 
-Total effects in gallery: **11** (6 original + 5 new)
+Total effects in gallery: **7** (2 original + 5 new)
 
 ## Command Reference
 

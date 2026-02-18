@@ -1,18 +1,15 @@
 # ImageMagick Effects Gallery
 
-A curated collection of **11 procedural art effects** created entirely with ImageMagick CLI pipelines. The repository includes a static gallery (`index.html`) that showcases each effect across four input images, plus a comprehensive test suite documenting 100+ iterations of 10 additional experimental effects.
+A curated collection of **7 procedural art effects** created entirely with ImageMagick CLI pipelines. The repository includes a static gallery (`index.html`) that showcases each effect across four input images, plus a comprehensive test suite documenting 100+ iterations of 10 additional experimental effects.
 
 ## What's in this repo
 
-- `index.html` — static gallery UI that renders the effect grid with 11 different artistic styles.
+- `index.html` — static gallery UI that renders the effect grid with 7 different artistic styles.
 - `script.js` — injects effect commands into the UI and powers the modal/copy actions.
 - `images/` — original input images shown in the first row of the gallery (chart, comic, art, portrait).
-- `output/` — generated results, grouped by effect (11 effects total).
+- `output/` — generated results, grouped by effect (7 effects total).
   - `output/embroidery/` — Textile embroidery with thread texture
   - `output/musuem_grade_textile/` — Museum-quality woven fabric
-  - `output/oil_painting/` — Oil paint with brush strokes
-  - `output/water_colour/` — Watercolor wash effects
-  - `output/graffiti/` — Spray paint on brick wall
   - `output/pencil_sketch/` — **NEW** Graphite pencil drawing
   - `output/chalk_drawing/` — **NEW** Chalk on blackboard
   - `output/mosaic_new/` — **NEW** Pixelated tile mosaic
@@ -136,86 +133,7 @@ Step explanations:
 - `-compose Overlay -define compose:args=60` boosts texture without destroying colors.
 - `-unsharp`, `-modulate`, `-contrast-stretch` refine clarity and color balance.
 
-### 3) Oil Painting
-
-Command:
-
-```bash
-convert input.avif \
-  -filter Lanczos -resize 2500x \
-  \( +clone -paint 4 -blur 0x1 \) \
-  \( +clone -paint 1 -selective-blur 0x3+10% \) \
-  -compose Blend -define compose:args=50 -composite \
-  \( +clone -colorspace gray -blur 0x2 -shade 135x40 -auto-level -sigmoidal-contrast 10x50% \) \
-  -compose Overlay -composite \
-  -modulate 100,145,100 -sharpen 0x2 \
-  output.png
-```
-
-Step explanations:
-
-- `-paint 4` and `-paint 1` simulate brush strokes at different sizes.
-- `-selective-blur 0x3+10%` smooths small details while preserving edges.
-- `-compose Blend -define compose:args=50` mixes the two paint layers evenly.
-- `-colorspace gray -shade 135x40` creates a lighting map that mimics canvas relief.
-- `-sigmoidal-contrast 10x50%` boosts midtones to make strokes pop.
-- `-compose Overlay` combines the lighting map with the painted image.
-- `-modulate 100,145,100` increases saturation for oil richness.
-- `-sharpen 0x2` restores edge definition.
-
-### 4) Water Colour
-
-Command:
-
-```bash
-convert input.avif \
-  -filter Lanczos -resize 2500x \
-  \( +clone -median 8 -paint 2 -modulate 100,160,100 \) \
-  \( +clone -colorspace gray -edge 1 -negate -median 2 -level 10%,90% \) \
-  -compose Multiply -define compose:args=35 -composite \
-  \( -size 2500x2500 canvas:white +noise Gaussian -colorspace gray -virtual-pixel tile -blur 0x1 -shade 120x45 -auto-level \) \
-  -compose SoftLight -composite \
-  -unsharp 0x3+1.5+0.02 -contrast-stretch 1%x1% \
-  output.png
-```
-
-Step explanations:
-
-- `-median 8` smooths textures into watercolor blotches.
-- `-paint 2` simulates wash strokes.
-- `-modulate 100,160,100` boosts saturation slightly for pigment.
-- `-edge 1 -negate` extracts dark linework; `-median 2` softens it.
-- `-level 10%,90%` strengthens the edge layer.
-- `-compose Multiply` merges edges at 35% to simulate ink bleed.
-- `+noise Gaussian` builds a paper grain texture.
-- `-shade 120x45` adds subtle paper lighting.
-- `-compose SoftLight` mixes the paper texture into the image.
-- `-unsharp` and `-contrast-stretch` finalize sharpness and contrast.
-
-### 5) Graffiti Wall
-
-Command:
-
-```bash
-convert input.avif \
-  -filter Lanczos -resize 2500x -modulate 100,150,100 \
-  \( -size 2500x2500 pattern:bricks -colorspace gray -blur 0x2 -shade 120x45 -auto-level \) \
-  -compose Overlay -composite \
-  output.png
-```
-
-Step explanations:
-
-- `-modulate 100,150,100` increases saturation for punchy spray paint.
-- `pattern:bricks` creates a brick wall texture.
-- `-shade 120x45` simulates light on the wall's surface.
-- `-compose Overlay` blends graffiti colors with the wall texture.
-
----
-
-## New Effects (Recently Added)
-
-### 6) Pencil Sketch
+### 3) Pencil Sketch
 
 **Two variants optimized for different content types:**
 
@@ -250,7 +168,7 @@ Step explanations:
 - `-level` adjusts tonal range to reduce whiteness.
 - For charts, `-edge` preserves sharp lines and text better than sketch filter.
 
-### 7) Chalk Drawing
+### 4) Chalk Drawing
 
 Command:
 
@@ -268,7 +186,7 @@ Step explanations:
 - `-blur 0x1` softens for chalk-like texture.
 - `-edge 2` defines chalk stroke edges.
 
-### 8) Mosaic
+### 5) Mosaic
 
 Command:
 
@@ -284,7 +202,7 @@ Step explanations:
 - `-scale 1000%` upscales without interpolation for blocky mosaic effect.
 - Simple but effective pixelation creates tile appearance.
 
-### 9) Impressionist
+### 6) Impressionist
 
 Command:
 
@@ -299,7 +217,7 @@ Step explanations:
 - `-paint 5` simulates oil brush strokes with radius 5 pixels.
 - `-modulate 100,110,100` boosts saturation by 10% for painterly vibrancy.
 
-### 10) Metal Engraving
+### 7) Metal Engraving
 
 Command:
 
